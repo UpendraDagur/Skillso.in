@@ -45,7 +45,7 @@
       padding: 22px 20px;
       max-width: 1150px;
       margin: auto;
-      height: 74px; /* fixed header height */
+      height: 74px;
     }
     .logo {
       display: flex;
@@ -71,7 +71,6 @@
       line-height: 1;
       font-size: 1rem;
     }
-    /* Underline animation ONLY for links without .cta */
     nav a:not(.cta) {
       position: relative;
       padding-bottom: 4px;
@@ -106,7 +105,6 @@
     .cta:hover {
       background: var(--btn-hover-bg);
     }
-    /* Hamburger button with 2 lines */
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -130,10 +128,9 @@
       width: 100%;
     }
     .menu-toggle span:last-child {
-      width: 140%;     /* longer second line */
-      margin-left: -40%; /* shift left to align visually */
+      width: 140%;     
+      margin-left: -40%; 
     }
-    /* Animate lines into X when active */
     .menu-toggle.active span:first-child {
       transform: rotate(45deg) translate(1px, 5px);
       width: 100%;
@@ -144,7 +141,6 @@
       width: 100%;
       margin-left: 0;
     }
-    /* Mobile Styles */
     @media (max-width: 768px) {
       nav {
         display: none;
@@ -167,10 +163,10 @@
       }
     }
 
-    /* Hero Section */
+    /* Hero Section (with login box inside) */
     .hero {
-        height: calc(83vh - 74px); /* Half viewport height minus header height */
-        min-height: 300px; /* optional minimum height */
+        height: calc(83vh - 74px);
+        min-height: 300px; 
         background-color: var(--white);
         background-image:
         linear-gradient(to right, var(--gray-light) 1px, transparent 1px),
@@ -179,85 +175,73 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 60px 20px;
+        padding: 20px;
     }
 
-    .hero-content {
-        max-width: 1150px;
-        width: 100%;
-        text-align: left;
+    /* Login Box */
+    .login-box {
+      background: var(--white);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
     }
-
-    .hero-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        max-width: 1150px;
-        margin: auto;
-        gap: 40px;
-        flex-wrap: wrap;
+    .login-box h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 24px;
     }
-
-    .hero-text {
-        flex: 1 1 450px;
+    .form-group {
+      text-align: left;
+      margin-bottom: 20px;
     }
-
-    .hero-text h1 {
-        font-size: 2.8rem;
-        font-weight: 800;
-        margin-bottom: 16px;
-        line-height: 1.2;
-    } 
-
-    .hero-text p {
-        font-size: 1rem;
-        margin-bottom: 24px;
-        color: #444;
+    .form-group label {
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 8px;
     }
-
-    .hero-btn {
-        display: inline-block;
-        background: var(--yellow);
-        color: var(--black);
-        font-weight: 600;
-        padding: 14px 28px;
-        border-radius: 12px;
-        text-decoration: none;
-        font-size: 1rem;
-        box-shadow: 3px 3px 0px var(--black);
-        transition: transform 0.2s ease;
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s ease;
     }
-
-    .hero-btn:hover {
-        transform: translateY(-2px);
+    .form-group input:focus {
+      border-color: var(--yellow);
     }
-
-    .hero-image {
-        flex: 1 1 450px;
-        text-align: center;
+    .login-btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: var(--btn-bg);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease-in-out;
     }
-
-    .hero-image img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 16px;
+    .login-btn:hover {
+      background: var(--btn-hover-bg);
     }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-    .hero-container {
-        flex-direction: column;
-        text-align: center;
+    .extra-links {
+      margin-top: 16px;
+      font-size: 0.9rem;
     }
-    /* Make image come first */
-   .hero-image {
-       order: -1;
-       margin-bottom: -130px; /* space between image and text */
-       margin-top: -40px; /* space between image and header */
-   }
-    .hero-text h1 {
-        font-size: 2rem;
+    .extra-links a {
+      color: var(--black);
+      text-decoration: none;
+      font-weight: 500;
     }
+    .extra-links a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -280,19 +264,24 @@
     </header>
   </div>
 
-  <!-- Hero Section -->
+  <!-- Hero Section (with login form inside) -->
   <section class="hero">
-    <div class="hero-container">
-      <!-- Left: Text -->
-      <div class="hero-text">
-        <h1>Master content creation with Skillso.</h1>
-        <p>Learn, create, and grow with <strong>expert-led courses</strong> designed for <strong>digital success</strong>.</p>
-        <a href="index.html#courses" class="hero-btn">Explore Courses</a>
-      </div>
-
-      <!-- Right: Image -->
-      <div class="hero-image">
-        <img src="hero.png" alt="Name of Image">
+    <div class="login-box">
+      <h2>Login to Skillso</h2>
+      <form>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter your username" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required />
+        </div>
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+      <div class="extra-links">
+        <p><a href="#">Forgot password?</a></p>
+        <p>Don't have an account? <a href="#">Sign up</a></p>
       </div>
     </div>
   </section>
@@ -306,7 +295,6 @@
       toggleBtn.classList.toggle('active');
     });
 
-    // Close menu if click outside
     document.addEventListener('click', (e) => {
       if (!navMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
         navMenu.classList.remove('active');
@@ -314,7 +302,6 @@
       }
     });
 
-    // Keyboard accessibility for toggle
     toggleBtn.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -325,4 +312,3 @@
   </script>
 </body>
 </html>
-
