@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skillso</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="favicon.jpeg" />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --yellow: #ffdf00;
+      --black: #101010;
+      --gray-light: #eaeaea;
+      --gray-dark: #444;
+      --white: #fff;
+      --btn-bg: #101010;
+      --btn-hover-bg: #333;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--white);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.5;
+    }
+    .header-wrapper {
+      width: 100%;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1000;
+      background: var(--white);
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 20px;
+      max-width: 1150px;
+      margin: auto;
+      height: 74px; /* fixed header height */
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .logo img {
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      display: block;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--black);
+      font-weight: 500;
+      transition: color 0.2s ease-in-out;
+      line-height: 1;
+      font-size: 1rem;
+    }
+    /* Underline animation ONLY for links without .cta */
+    nav a:not(.cta) {
+      position: relative;
+      padding-bottom: 4px;
+    }
+    nav a:not(.cta)::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background: var(--yellow);
+      transition: width 0.3s ease;
+    }
+    nav a:not(.cta):hover::after {
+      width: 100%;
+    }
+    nav a:hover {
+      color: #555;
+    }
+    .cta {
+      background: var(--btn-bg);
+      color: var(--white);
+      padding: 10px 20px;
+      border-radius: 24px;
+      font-weight: 600;
+      transition: background 0.2s ease-in-out;
+      line-height: 1;
+      white-space: nowrap;
+      font-size: 1rem;
+    }
+    .cta:hover {
+      background: var(--btn-hover-bg);
+    }
+    /* Hamburger button with 2 lines */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 28px;
+      height: 10px;
+      cursor: pointer;
+      gap: 6px;
+      position: relative;
+      z-index: 1100;
+    }
+    .menu-toggle span {
+      display: block;
+      background: var(--black);
+      border-radius: 2px;
+      height: 3px;
+      transition: 0.4s ease;
+      transform-origin: center center;
+    }
+    .menu-toggle span:first-child {
+      width: 100%;
+    }
+    .menu-toggle span:last-child {
+      width: 140%;     /* longer second line */
+      margin-left: -40%; /* shift left to align visually */
+    }
+    /* Animate lines into X when active */
+    .menu-toggle.active span:first-child {
+      transform: rotate(45deg) translate(1px, 5px);
+      width: 100%;
+      margin-left: 0;
+    }
+    .menu-toggle.active span:last-child {
+      transform: rotate(-45deg) translate(-0.4px, -6px);
+      width: 100%;
+      margin-left: 0;
+    }
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: var(--white);
+        width: 100vw;
+        max-width: 1150px;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+      }
+      nav.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+        height: calc(83vh - 74px); /* Half viewport height minus header height */
+        min-height: 300px; /* optional minimum height */
+        background-color: var(--white);
+        background-image:
+        linear-gradient(to right, var(--gray-light) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--gray-light) 1px, transparent 1px);
+        background-size: 32.2px 32.2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 60px 20px;
+    }
+
+    .hero-content {
+        max-width: 1150px;
+        width: 100%;
+        text-align: left;
+    }
+
+    .hero-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1150px;
+        margin: auto;
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+
+    .hero-text {
+        flex: 1 1 450px;
+    }
+
+    .hero-text h1 {
+        font-size: 2.8rem;
+        font-weight: 800;
+        margin-bottom: 16px;
+        line-height: 1.2;
+    } 
+
+    .hero-text p {
+        font-size: 1rem;
+        margin-bottom: 24px;
+        color: #444;
+    }
+
+    .hero-btn {
+        display: inline-block;
+        background: var(--yellow);
+        color: var(--black);
+        font-weight: 600;
+        padding: 14px 28px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 1rem;
+        box-shadow: 3px 3px 0px var(--black);
+        transition: transform 0.2s ease;
+    }
+
+    .hero-btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .hero-image {
+        flex: 1 1 450px;
+        text-align: center;
+    }
+
+    .hero-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    /* Make image come first */
+   .hero-image {
+       order: -1;
+       margin-bottom: -70px; /* space between image and text */
+       margin-top: -30px; /* space between image and header */
+   }
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-wrapper">
+    <header>
+      <div class="logo">
+        <a href="#">
+          <img src="logo.png" alt="Site Logo" />
+        </a>
+      </div>
+      <nav id="nav-menu">
+        <a href="index.html#courses">Courses</a>
+        <a class="cta" href="login.html">Login</a>
+      </nav>
+      <div class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <!-- Left: Text -->
+      <div class="hero-text">
+        <h1>Master content creation with Skillso.</h1>
+        <p>Learn, create, and grow with <strong>expert-led courses</strong> designed for <strong>digital success</strong>.</p>
+        <a href="index.html#courses" class="hero-btn">Explore Courses</a>
+      </div>
+
+      <!-- Right: Image -->
+      <div class="hero-image">
+        <img src="hero.png" alt="Name of Image">
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    const toggleBtn = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    toggleBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      toggleBtn.classList.toggle('active');
+    });
+
+    // Close menu if click outside
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
+        navMenu.classList.remove('active');
+        toggleBtn.classList.remove('active');
+      }
+    });
+
+    // Keyboard accessibility for toggle
+    toggleBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        navMenu.classList.toggle('active');
+        toggleBtn.classList.toggle('active');
+      }
+    });
+  </script>
+</body>
+</html>
+
